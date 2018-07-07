@@ -32,6 +32,24 @@ $(document).ready(function () {
         throw err;
     });
 
+    
+    // var url = "http://www.omdbapi.com/?i=tt3896198";
+    // url += '?' + $.param({
+    //     'apikey': "eb2479f0",
+
+    // });
+    $.ajax({
+        url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
+        method: 'GET',
+    }).done(function (result) {
+        console.log(result);
+    }).fail(function (err) {
+        throw err;
+    });
+
+
+
+
 
 
 
