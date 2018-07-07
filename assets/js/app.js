@@ -7,13 +7,29 @@ $(document).ready(function () {
             api_key: "LIaHwfw7KLomS1KKtUiyXVsnrQih_Y4i",
             api_secret: "c_qU60OC3uuVOhbZrNukuSmlTSohv1Ji",
             return_attributes: "age",
-            image_url: "http://www.gstatic.com/tv/thumb/persons/1366/1366_v9_bb.jpg",
+            image_url: "",
 
         }
     }).then(function (response) {
         console.log(response);
 
 
+    });
+
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    url += '?' + $.param({
+        'api-key': "2e3f2682de7e45c8860884647901b489",
+        'begin_date': "20160101",    
+        'end_date': "20170101"
+
+    });
+    $.ajax({
+        url: url,
+        method: 'GET',
+    }).done(function (result) {
+        console.log(result);
+    }).fail(function (err) {
+        throw err;
     });
 
 
