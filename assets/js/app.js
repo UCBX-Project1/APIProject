@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+
     $.ajax({
         url: "https://api-us.faceplusplus.com/facepp/v3/detect",
         method: "POST",
