@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     $(document).ready(function () {
         $('.datepicker').datepicker({
             // dateFormat: 'yyyy-mm-dd',
@@ -34,6 +35,7 @@ $(document).ready(function () {
         'begin_date': "20160101",
         'end_date': "20170101"
 
+
     });
     $.ajax({
         url: url,
@@ -43,6 +45,24 @@ $(document).ready(function () {
     }).fail(function (err) {
         throw err;
     });
+
+    
+    // var url = "http://www.omdbapi.com/?i=tt3896198";
+    // url += '?' + $.param({
+    //     'apikey': "eb2479f0",
+
+    // });
+    $.ajax({
+        url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
+        method: 'GET',
+    }).done(function (result) {
+        console.log(result);
+    }).fail(function (err) {
+        throw err;
+    });
+
+
+
 
 
 
