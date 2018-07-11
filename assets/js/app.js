@@ -1,8 +1,19 @@
 $(document).ready(function () {
 
-    $(document).ready(function(){
-        $('.datepicker').datepicker();
-      });
+    var imageSubmitButton = $(".image-submit-button");
+    var birthdaySubmitButton = $(".birthday-submit-button");
+    var imageUrl = $(".image-url");
+    var birthday = $(".birthday");
+    
+    $(imageSubmitButton).on("click", function() {
+
+    });
+
+    $(birthdaySubmitButton).on("click", function() {
+
+    });
+
+    $('.datepicker').datepicker();
 
     $.ajax({
         url: "https://api-us.faceplusplus.com/facepp/v3/detect",
