@@ -3,7 +3,7 @@ $(document).ready(function () {
     var birthdaySubmitButton = $(".birthday-submit-button");
     var imageSubmitButton = $(".image-submit-button");
     var urlSubmitButton = $(".url-submit-button");
-    var birthday = $(".birthday");
+    var birthday = $(".datepicker");
     var imageUrl = $(".image-url");
     var fileInput = $(".file-input");
 
@@ -22,6 +22,11 @@ $(document).ready(function () {
     $(birthdaySubmitButton).on("click", function (event) {
         event.preventDefault();
 
+        let bday = birthday.val();
+        let now = moment();
+        let age = Math.abs(moment(bday, "MMM-DD-YYYY").diff(now, "years"));
+        console.log(`This person's bday is: ${bday}`);
+        console.log(`This person's age is: ${age}`);
 
     });
 
