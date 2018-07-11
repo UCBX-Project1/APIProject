@@ -27,6 +27,7 @@ $(document).ready(function () {
         let age = Math.abs(moment(bday, "MMM-DD-YYYY").diff(now, "years"));
         console.log(`This person's bday is: ${bday}`);
         console.log(`This person's age is: ${age}`);
+        let m = moment(bday, "MMM-DD-YYYY");
 
     });
 
@@ -74,7 +75,9 @@ $(document).ready(function () {
             if (faces.length > 0) {
                 let age = faces[0].attributes.age.value;
                 console.log(`The predicted age is: ${age}`);
-
+                let currYear = moment().get("year");
+                let m = moment().set('year', currYear - age);
+                console.log(m);
 
             }
         });
@@ -138,10 +141,52 @@ $(document).ready(function () {
 
 
 
+    function nytGetter(mObj) {
+        let url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: {
+                'api-key': "2e3f2682de7e45c8860884647901b489",
+                'begin_date': "20160101",
+                'end_date': "20170101"
+            }
+        }).done(function (result) {
+            console.log(result);
+
+
+
+        }).fail(function (err) {
+            throw err;
+        });
+    }
+
+    function omdbGetter(mObj) {
+        let year = mObj.get("year");
+        $.ajax({
+            url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
+            method: 'GET',
+            data: {
+                apikey: "eb2479f0",
+                y: year,
+            }
+        }).done(function (result) {
+            console.log(result);
 
 
 
 
+        }).fail(function (err) {
+            throw err;
+        });
+    }
+
+
+    function jsonGetter(mObj) {
+        omdbGetter(mObj);
+        nytGetter(mObj);
+    }
 
 
 
