@@ -1,30 +1,46 @@
 $(document).ready(function () {
 
-    var imageSubmitButton = $(".image-submit-button");
     var birthdaySubmitButton = $(".birthday-submit-button");
+    var imageSubmitButton = $(".image-submit-button");
     var urlSubmitButton = $(".url-submit-button");
-    var imageUrl = $(".image-url");
     var birthday = $(".birthday");
+    var imageUrl = $(".image-url");
+    var fileInput = $(".file-input");
+    
 
+    /**
+     * When button for manual birthday input is clicked
+     */
     $(birthdaySubmitButton).on("click", function(event) {
         event.preventDefault();
 
         
     });
 
+    /**
+     * When button for file upload is clicked
+     */
     $(imageSubmitButton).on("click", function(event) {
         event.preventDefault();
 
-
+        let file = fileInput[0].files[0];
+        console.log(`File uploaded:`);
+        console.log(file);
     });
 
+    /**
+     * When button for URL option is clicked
+     */
     $(urlSubmitButton).on("click", function(event) {
         event.preventDefault();
 
-        let url = $(".image-url").val().trim();
+        let url = imageUrl.val().trim();
+        imageUrl.val("");
+
         if (url.length < 1) {
             return;
         }
+
         $.ajax({
             url: "https://api-us.faceplusplus.com/facepp/v3/detect",
             method: "POST",
@@ -37,7 +53,13 @@ $(document).ready(function () {
             }
         }).then(function (response) {
             console.log(response);
+            let faces = response.faces;
+            if (faces.length > 0) {
+                let age = faces[0].attributes.age.value;
+                console.log(`The predicted age is: ${age}`);
 
+
+            }
         });
 
     });
