@@ -21,3 +21,43 @@
     height: 400px;
     overflow-y: scroll;
 }
+
+.datepicker-date-display {
+    background-color: blueviolet;
+}
+
+.material-icons.prefix.active,
+.insetlinktext.active {
+    color: blueviolet;
+}
+
+.is-selected button {
+    color: white;
+}
+
+.datepicker-table td.is-today,
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done {
+    color: blueviolet;
+}
+
+.datepicker-table td.is-selected {
+    background-color: blueviolet;
+}
+
+/* label focus color */
+
+.input-field input[type=text]:focus+label,
+.materialize-textarea:focus:not([readonly])+label {
+    color: blueviolet !important;
+}
+
+/* label underline focus color */
+
+.input-field input[type=text]:focus,
+.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid blueviolet !important;
+    box-shadow: 0 1px 0 0 blueviolet !important;
+}
