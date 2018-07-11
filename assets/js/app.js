@@ -140,7 +140,11 @@ $(document).ready(function () {
 
 
 
-
+    /**
+     * Takes in a Moment.js object and query the NYT api, 
+     * then update teh display for webpage.
+     * @param {Moment} mObj
+     */
     function nytGetter(mObj) {
         let url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
@@ -162,6 +166,11 @@ $(document).ready(function () {
         });
     }
 
+    /**
+     * Takes in a Moment.js object and query the omdb api, 
+     * then update the display for webpage.
+     * @param {Moment} mObj 
+     */
     function omdbGetter(mObj) {
         let year = mObj.get("year");
         $.ajax({
@@ -183,6 +192,11 @@ $(document).ready(function () {
     }
 
 
+    /**
+     * Function hub that takes in a Moment.js object
+     * then run functions that query designated apis. 
+     * @param {Moment} mObj 
+     */
     function jsonGetter(mObj) {
         omdbGetter(mObj);
         nytGetter(mObj);
