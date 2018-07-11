@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+
     $.ajax({
         url: "https://api-us.faceplusplus.com/facepp/v3/detect",
         method: "POST",
@@ -31,6 +35,24 @@ $(document).ready(function () {
     }).fail(function (err) {
         throw err;
     });
+
+    
+    // var url = "http://www.omdbapi.com/?i=tt3896198";
+    // url += '?' + $.param({
+    //     'apikey': "eb2479f0",
+
+    // });
+    $.ajax({
+        url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
+        method: 'GET',
+    }).done(function (result) {
+        console.log(result);
+    }).fail(function (err) {
+        throw err;
+    });
+
+
+
 
 
 

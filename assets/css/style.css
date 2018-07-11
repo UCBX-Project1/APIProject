@@ -1,0 +1,23 @@
+#jumbotron {
+    margin-bottom: 25px;
+}
+
+#jumbotronin {
+    margin: 0px;
+    text-align: center;
+}
+
+#jumbotronout {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.input-field {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.results {
+    height: 400px;
+    overflow-y: scroll;
+}

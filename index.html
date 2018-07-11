@@ -12,31 +12,83 @@
         crossorigin="anonymous"> -->
     <!-- Materialize CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
-
+    <div class="row" id="jumbotron">
+        <div class="col s12 m12" id="jumbotronout">
+            <div class="card purple darken-2" id="jumbotronin">
+                <div class="card-content white-text">
+                    <span class="card-title">
+                        <h2>Card Title</h2>
+                    </span>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati aspernatur corporis quos doloribus. Voluptatibus, necessitatibus possimus eaque, dolorem, enim voluptate pariatur ipsam a quod iste minus dolor eveniet ut voluptatem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1" id="result1">
+            <!-- this is the enter birthday bar-->
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="text" class="datepicker">
+                        <label for="icon_prefix2">Enter Birthday</label>
+                    </div>
+                </div>
+            </form>
+            <!-- this is the picture upload bar THIS IS CURRENTLY A PLACEHOLDER TO BE CONFIGURED/REPLACED LATER -->
+            <form class="col s12">
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <i class="material-icons">add_a_photo</i>
+                            <input type="file" />
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload file" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- this is the enter image url bar, havent figured out how to limit acceptible entries to pictures yet -->
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">insert_link</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix2">Enter Image URL</label>
+                    </div>
+                </div>
+            </form>
+            <!-- these are the data cards that will hold the data, adjusted height and a scrolling y-axis -->
+            <div class="col s12 m4">
+                <div class="card purple darken-1 results" id="result1">
                     <div class="card-content white-text">
                         <span class="card-title">Card Title</span>
-                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because
-                            I require little markup to use effectively.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident vel exercitationem aliquid vitae minus aperiam, mollitia non id. Quam aliquid aliquam odio excepturi blanditiis asperiores officiis nisi eligendi adipisci. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum placeat porro natus iure eius labore vitae iusto eaque reiciendis tempora sed, ducimus libero soluta numquam facilis excepturi corporis enim blanditiis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi deleniti doloribus eum excepturi voluptatem perferendis, tempore ut porro nihil nesciunt officiis explicabo fuga reiciendis blanditiis maxime est molestias consequuntur ducimus?</p>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1" id="result2 ">
+            <div class="col s12 m4">
+                <div class="card purple darken-1 results" id="result2">
+                    <div class="card-content white-text">
+                        <span class="card-title">Card Title</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis odit minus accusamus eum expedita fuga, vitae exercitationem consequuntur est harum culpa soluta laudantium sint deleniti praesentium aliquid perferendis temporibus nisi. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, asperiores nisi voluptatibus explicabo magnam harum reprehenderit delectus, commodi corporis earum quisquam exercitationem aliquid repellendus! Recusandae quam aliquid pariatur praesentium numquam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur debitis mollitia similique aliquid perspiciatis earum ipsa quae dignissimos, consectetur, porro ea harum? Architecto obcaecati libero, excepturi dicta accusamus pariatur iusto!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card purple darken-1 results" id="result3">
                     <div class="card-content white-text ">
                         <span class="card-title ">Card Title</span>
-                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because
-                            I require little markup to use effectively.</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto ab dolorem cupiditate sunt eaque. Distinctio quis, dolore aliquam doloremque totam laudantium expedita enim corporis nihil provident harum, autem, dicta tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa unde voluptates aut amet exercitationem, iure sunt, nisi voluptatibus ducimus ex tempora atque aperiam quo asperiores quam facilis, sapiente quaerat. Ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non soluta laudantium consequuntur quia nisi architecto nihil! Ut laudantium dignissimos laborum architecto sed saepe voluptatem rerum quo, minima magnam, iste maxime?</p>
                     </div>
                 </div>
             </div>
