@@ -6,40 +6,44 @@ $(document).ready(function () {
     var birthday = $(".birthday");
     var imageUrl = $(".image-url");
     var fileInput = $(".file-input");
-    
+
     $('.datepicker').datepicker({
-            // dateFormat: 'yyyy-mm-dd',
-            // // minDate:'1900-01-01',
-            // maxDate:'2019-12-31',
-            yearRange: 99,
-            maxYear: "2019",
+        // dateFormat: 'yyyy-mm-dd',
+        // // minDate:'1900-01-01',
+        // maxDate:'2019-12-31',
+        yearRange: 99,
+        maxYear: "2019",
 
     });
 
     /**
      * When button for manual birthday input is clicked
      */
-    $(birthdaySubmitButton).on("click", function(event) {
+    $(birthdaySubmitButton).on("click", function (event) {
         event.preventDefault();
 
-        
+
     });
 
     /**
      * When button for file upload is clicked
      */
-    $(imageSubmitButton).on("click", function(event) {
+    $(imageSubmitButton).on("click", function (event) {
         event.preventDefault();
 
         let file = fileInput[0].files[0];
         console.log(`File uploaded:`);
         console.log(file);
+
+        let oReq = new XMLHttpRequest();
+        oReq.open("POST", file, true);
+        oReq.send();
     });
 
     /**
      * When button for URL option is clicked
      */
-    $(urlSubmitButton).on("click", function(event) {
+    $(urlSubmitButton).on("click", function (event) {
         event.preventDefault();
 
         let url = imageUrl.val().trim();
@@ -57,7 +61,7 @@ $(document).ready(function () {
                 api_secret: "c_qU60OC3uuVOhbZrNukuSmlTSohv1Ji",
                 return_attributes: "age",
                 image_url: `${url}`,
-    
+
             }
         }).then(function (response) {
             console.log(response);
@@ -72,7 +76,6 @@ $(document).ready(function () {
 
     });
 
-    $('.datepicker').datepicker();
 
     /**
      * Face ++
