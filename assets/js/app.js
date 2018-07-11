@@ -7,6 +7,14 @@ $(document).ready(function () {
     var imageUrl = $(".image-url");
     var fileInput = $(".file-input");
     
+    $('.datepicker').datepicker({
+            // dateFormat: 'yyyy-mm-dd',
+            // // minDate:'1900-01-01',
+            // maxDate:'2019-12-31',
+            yearRange: 99,
+            maxYear: "2019",
+
+    });
 
     /**
      * When button for manual birthday input is clicked
@@ -68,7 +76,6 @@ $(document).ready(function () {
 
     /**
      * Face ++
-    
     $.ajax({
         url: "https://api-us.faceplusplus.com/facepp/v3/detect",
         method: "POST",
@@ -92,8 +99,9 @@ $(document).ready(function () {
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     url += '?' + $.param({
         'api-key': "2e3f2682de7e45c8860884647901b489",
-        'begin_date': "",    
-        'end_date': ""
+        'begin_date': "20160101",
+        'end_date': "20170101"
+
 
     });
     $.ajax({

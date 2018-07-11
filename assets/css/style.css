@@ -35,6 +35,10 @@
     color: white;
 }
 
+.dropdown-content li>a, .dropdown-content li>span {
+    color: blueviolet;
+}
+
 .datepicker-table td.is-today,
 .datepicker-cancel,
 .datepicker-clear,
