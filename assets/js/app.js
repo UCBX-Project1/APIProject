@@ -1,15 +1,19 @@
 $(document).ready(function () {
 
+    var imageSubmitButton = $(".image-submit-button");
+    var birthdaySubmitButton = $(".birthday-submit-button");
+    var imageUrl = $(".image-url");
+    var birthday = $(".birthday");
+    
+    $(imageSubmitButton).on("click", function() {
 
-    $('.datepicker').datepicker();
-
-    $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 50, 
-    min: new Date(1945,1,1),
-    max: true  // `true` sets it to today. `false` removes any limits.
     });
 
+    $(birthdaySubmitButton).on("click", function() {
+
+    });
+
+    $('.datepicker').datepicker();
 
     $.ajax({
         url: "https://api-us.faceplusplus.com/facepp/v3/detect",
