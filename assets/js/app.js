@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    const RETURN_NUM = 10;
 
     var birthdaySubmitButton = $(".birthday-submit-button");
     var imageSubmitButton = $(".image-submit-button");
@@ -6,6 +7,7 @@ $(document).ready(function () {
     var birthday = $(".datepicker");
     var imageUrl = $(".image-url");
     var fileInput = $(".file-input");
+    var bdayLabel = $(".bday-label");
 
     $('.datepicker').datepicker({
         // dateFormat: 'yyyy-mm-dd',
@@ -16,6 +18,12 @@ $(document).ready(function () {
 
     });
 
+    let storedBday = window.localStorage.getItem("birthday");
+    if (storedBday !== null) {
+        birthday.val(storedBday);
+        bdayLabel.text("");
+    }
+
     /**
      * When button for manual birthday input is clicked
      */
@@ -23,6 +31,9 @@ $(document).ready(function () {
         event.preventDefault();
 
         let bday = birthday.val();
+        window.localStorage.setItem("birthday", bday);
+        birthday.val("");
+        bdayLabel.text("Enter Birthday");
         let now = moment();
         let age = Math.abs(moment(bday, "MMM-DD-YYYY").diff(now, "years"));
         console.log(`This person's bday is: ${bday}`);
@@ -159,12 +170,21 @@ $(document).ready(function () {
                 'end_date': `${year + 1}0101`,
             }
         }).done(function (result) {
-            console.log(result);
-
+            // console.log(result);
+            let docs = result.response.docs;
+            console.log(`Docs received from NYT: `);
+            console.log(docs);
+            for (let i = 0; i < RETURN_NUM; i ++) {
+                let currDoc = docs[i];
+                let currHeadLine = currDoc.headline.main;
+                let currUrl = currDoc.web_url;
+                console.log(`${i} headline: ${currHeadLine}, url: ${currUrl}`);
+                
+            }
 
 
         }).fail(function (err) {
-            throw err;
+            console.log(err);
         });
     }
 
@@ -189,7 +209,7 @@ $(document).ready(function () {
 
 
         }).fail(function (err) {
-            throw err;
+            console.log(err);
         });
     }
 
@@ -200,7 +220,7 @@ $(document).ready(function () {
      * @param {Moment} mObj 
      */
     function jsonGetter(mObj) {
-        omdbGetter(mObj);
+        // omdbGetter(mObj);
         nytGetter(mObj);
     }
 
