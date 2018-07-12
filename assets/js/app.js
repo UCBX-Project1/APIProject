@@ -28,7 +28,8 @@ $(document).ready(function () {
         console.log(`This person's bday is: ${bday}`);
         console.log(`This person's age is: ${age}`);
         let m = moment(bday, "MMM-DD-YYYY");
-
+        //calling jsonGetter
+        jsonGetter(m);
     });
 
     /**
@@ -78,7 +79,8 @@ $(document).ready(function () {
                 let currYear = moment().get("year");
                 let m = moment().set('year', currYear - age);
                 console.log(m);
-
+                //calling jsonGetter
+                jsonGetter(m);
             }
         });
 
@@ -142,19 +144,19 @@ $(document).ready(function () {
 
     /**
      * Takes in a Moment.js object and query the NYT api, 
-     * then update teh display for webpage.
+     * then update the display for webpage.
      * @param {Moment} mObj
      */
     function nytGetter(mObj) {
         let url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-
+        let year = mObj.get('year');
         $.ajax({
             url: url,
             method: 'GET',
             data: {
                 'api-key': "2e3f2682de7e45c8860884647901b489",
-                'begin_date': "20160101",
-                'end_date': "20170101"
+                'begin_date': `${year}0101`,
+                'end_date': `${year + 1}0101`,
             }
         }).done(function (result) {
             console.log(result);
