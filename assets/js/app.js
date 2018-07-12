@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    //==================================
+    // Our variables and Event Listeners
+    //==================================
     const RETURN_NUM = 10;
 
     var birthdaySubmitButton = $(".birthday-submit-button");
@@ -9,6 +12,9 @@ $(document).ready(function () {
     var fileInput = $(".file-input");
     var bdayLabel = $(".bday-label");
 
+    //=====================================
+    // Setting up the datepicker for b-days
+    //=====================================
     $('.datepicker').datepicker({
         // dateFormat: 'yyyy-mm-dd',
         // // minDate:'1900-01-01',
@@ -18,6 +24,10 @@ $(document).ready(function () {
 
     });
 
+    //==============================================
+    // Checking local storage to pre-write b-day for
+    // the same user.
+    //==============================================
     let storedBday = window.localStorage.getItem("birthday");
     if (storedBday !== null) {
         birthday.val(storedBday);
