@@ -111,62 +111,6 @@ $(document).ready(function () {
 
     });
 
-
-    /**
-     * Face ++
-    $.ajax({
-        url: "https://api-us.faceplusplus.com/facepp/v3/detect",
-        method: "POST",
-        data: {
-            api_key: "LIaHwfw7KLomS1KKtUiyXVsnrQih_Y4i",
-            api_secret: "c_qU60OC3uuVOhbZrNukuSmlTSohv1Ji",
-            return_attributes: "age",
-            image_url: "",
-
-        }
-    }).then(function (response) {
-        console.log(response);
-
-
-    });
-     */
-
-    /**
-     * NYTimes 
-     
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    url += '?' + $.param({
-        'api-key': "2e3f2682de7e45c8860884647901b489",
-        'begin_date': "20160101",
-        'end_date': "20170101"
-
-
-    });
-    $.ajax({
-        url: url,
-        method: 'GET',
-    }).done(function (result) {
-        console.log(result);
-    }).fail(function (err) {
-        throw err;
-    });
-    */
-
-    /**
-     * omdbapi
-    
-    $.ajax({
-        url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
-        method: 'GET',
-    }).done(function (result) {
-        console.log(result);
-    }).fail(function (err) {
-        throw err;
-    });
-     */
-
-
-
     /**
      * Takes in a Moment.js object and query the NYT api, 
      * then update the display for webpage.
@@ -234,22 +178,45 @@ $(document).ready(function () {
      */
     function omdbGetter(mObj) {
         let year = mObj.get("year");
+
         $.ajax({
-            url: "http://www.omdbapi.com/?i=tt3896198&apikey=eb2479f0",
-            method: 'GET',
+            url: "https://api.themoviedb.org/3/search/movie?",
+            method: "GET",
             data: {
-                apikey: "eb2479f0",
-                y: year,
+                api_key : "b9e5748e9383118720dd1c55b3461828",
+                language : "en-US",
+                query : "movie",
+                page: "1",
+                include_adult : "false",
+                year : year,
             }
-        }).done(function (result) {
-            console.log(result);
-
-
-
-
-        }).fail(function (err) {
-            console.log(err);
-        });
+        }).done(function(response) {
+            console.log(`Movie db response:`);
+            console.log(response);
+            let moviesList = response.results;
+            for (let i = 0; i < RETURN_NUM; i ++) {
+                let currMovie = moviesList[i];
+                let currName = currMovie.title;
+                $.ajax({
+                    url: "http://www.omdbapi.com/?",
+                    method: 'GET',
+                    data: {
+                        apikey: "eb2479f0",
+                        s : currName,
+                    }
+                }).done(function (result) {
+                    console.log(`Movie: ${currName}| data:`);
+                    console.log(result);
+        
+        
+        
+        
+                }).fail(function (err) {
+                    console.log(err);
+                });
+            }
+        
+        })
     }
 
 
@@ -259,7 +226,7 @@ $(document).ready(function () {
      * @param {Moment} mObj 
      */
     function jsonGetter(mObj) {
-        // omdbGetter(mObj);
+        omdbGetter(mObj);
         nytGetter(mObj);
     }
 
