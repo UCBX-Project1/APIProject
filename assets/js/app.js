@@ -39,6 +39,8 @@ $(document).ready(function () {
      */
     $(birthdaySubmitButton).on("click", function (event) {
         event.preventDefault();
+        emptyResults();
+
 
         let bday = birthday.val();
         window.localStorage.setItem("birthday", bday);
@@ -58,6 +60,7 @@ $(document).ready(function () {
      */
     $(imageSubmitButton).on("click", function (event) {
         event.preventDefault();
+        emptyResults();
 
         let file = fileInput[0].files[0];
         console.log(`File uploaded:`);
@@ -73,6 +76,7 @@ $(document).ready(function () {
      */
     $(urlSubmitButton).on("click", function (event) {
         event.preventDefault();
+
 
         let url = imageUrl.val().trim();
         imageUrl.val("");
@@ -188,7 +192,32 @@ $(document).ready(function () {
                 let currDoc = docs[i];
                 let currHeadLine = currDoc.headline.main;
                 let currUrl = currDoc.web_url;
-                console.log(`${i} headline: ${currHeadLine}, url: ${currUrl}`);
+                console.log((`${i} headline: ${currHeadLine}, url: ${currUrl}`));
+                console.log(currDoc)
+                
+                //To add information to the display...
+
+                //Create unordered list to help with spacing...
+                let ntyView = $("<ul>")
+                //Rather than having all information jammed into the cards, let's make the headlines links with the anchor tags...
+                let ntyURL = $('<a>',{
+                    text: `${currHeadLine}`, // <-- notice I replaced id with class
+                    href: `${currUrl}`,
+                }).appendTo(ntyView);
+
+                //Push links to the new list, then to the empty div...
+                $("#result1").append(ntyView)
+
+                //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
+
+                ntyView.css("font-weight", "bold", "font-size", "12px");
+                $('#results1').css({'width':'auto','height':'auto','display':'table'})
+                // $('#results2').css({'width':'auto','height':'auto','display':'table'})
+                // $('#results3').css({'width':'auto','height':'auto','display':'table'})
+
+                    
+                
+
                 
             }
 
@@ -234,6 +263,12 @@ $(document).ready(function () {
         nytGetter(mObj);
     }
 
+    //Clears out previous results -- tied to our click handlers.
+    function emptyResults(){
+        $("#result1").empty();
+        $("#result2").empty();
+        $("#result3").empty();
+    }
 
 
 
