@@ -145,7 +145,7 @@ $(document).ready(function () {
                 let ntyView = $("<ul>")
                 //Rather than having all information jammed into the cards, let's make the headlines links with the anchor tags...
                 let ntyURL = $('<a>',{
-                    text: `${currHeadLine}`, // <-- notice I replaced id with class
+                    text: `${currHeadLine}`,
                     href: `${currUrl}`,
                 }).appendTo(ntyView);
 
@@ -197,16 +197,54 @@ $(document).ready(function () {
             for (let i = 0; i < RETURN_NUM; i ++) {
                 let currMovie = moviesList[i];
                 let currName = currMovie.title;
+                
+
                 $.ajax({
                     url: "http://www.omdbapi.com/?",
                     method: 'GET',
                     data: {
                         apikey: "eb2479f0",
                         s : currName,
+                        y : year
                     }
                 }).done(function (result) {
-                    console.log(`Movie: ${currName}| data:`);
-                    console.log(result);
+                    console.log(result)
+                    
+                    let currOmdbData = result.Search
+                    
+                    console.log(currOmdbData)
+                
+
+                    for (let i = 0; i < RETURN_NUM; i ++) {
+                                            
+                        
+                    
+                        let omdbTitle = result.Search[i].Title;
+                        let omdbID = result.Search[i].imdbID;
+
+                        console.log (omdbTitle);
+                        console.log(omdbID);
+                       
+
+
+                        
+                    
+                        let omdbView = $("<ul>")
+                        //Rather than having all information jammed into the cards, let's make the headlines links with the anchor tags...
+                        let omdbURL = $('<a>',{
+                            text: `${omdbTitle}`,
+                            href: `"https://www.imdb.com/title/" + ${omdbID} + "/?ref_=nv_sr_1"`,
+                        }).appendTo(omdbView);
+        
+                        //Push links to the new list, then to the empty div...
+                        $("#result2").append(omdbView);
+        
+                        //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
+        
+                        omdbView.css("font-weight", "bold", "font-size", "12px");
+                        $('#results2').css({'width':'auto','height':'auto','display':'table'})
+
+                    };
         
         
         
