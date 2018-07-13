@@ -233,9 +233,9 @@ $(document).ready(function () {
                         //Rather than having all information jammed into the cards, let's make the headlines links with the anchor tags...
                         let omdbURL = $('<a>',{
                             text: `${omdbTitle}`,
-                            href: `"https://www.imdb.com/title/" + ${omdbID} + "/?ref_=nv_sr_1"`,
+                            href: `https://www.imdb.com/title/${omdbID}/?ref_=nv_sr_1`,
                         }).appendTo(omdbView);
-        
+                        console.log(omdbURL)
                         //Push links to the new list, then to the empty div...
                         $("#result2").append(omdbView);
         
