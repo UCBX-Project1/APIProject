@@ -4,13 +4,13 @@ $(document).ready(function () {
     //==================================
     const RETURN_NUM = 10;
 
-    var birthdaySubmitButton = $(".birthday-submit-button");
+    var userDateSubmitButton = $(".user-date-submit-button");
     var imageSubmitButton = $(".image-submit-button");
     var urlSubmitButton = $(".url-submit-button");
-    var birthday = $(".datepicker");
+    var inputDate = $(".datepicker");
     var imageUrl = $(".image-url");
     var fileInput = $(".file-input");
-    var bdayLabel = $(".bday-label");
+    var userDateLabel = $(".user-date-label");
 
     //=====================================
     // Setting up the datepicker for b-days
@@ -28,27 +28,27 @@ $(document).ready(function () {
     // Checking local storage to pre-write b-day for
     // the same user.
     //==============================================
-    let storedBday = window.localStorage.getItem("birthday");
-    if (storedBday !== null) {
-        birthday.val(storedBday);
-        bdayLabel.text("");
+    let storedUserDate = window.localStorage.getItem("birthday");
+    if (storedUserDate !== null) {
+        inputDate.val(storedUserDate);
+        userDateLabel.text("");
     }
 
     /**
      * When button for manual birthday input is clicked
      */
-    $(birthdaySubmitButton).on("click", function (event) {
+    $(userDateSubmitButton).on("click", function (event) {
         event.preventDefault();
 
-        let bday = birthday.val();
-        window.localStorage.setItem("birthday", bday);
-        birthday.val("");
-        bdayLabel.text("Enter Birthday");
+        let inputDate = inputDate.val();
+        window.localStorage.setItem("birthday", inputDate);
+        inputDate.val("");
+        userDateLabel.text("Enter Date");
         let now = moment();
-        let age = Math.abs(moment(bday, "MMM-DD-YYYY").diff(now, "years"));
-        console.log(`This person's bday is: ${bday}`);
+        let age = Math.abs(moment(inputDate, "MMM-DD-YYYY").diff(now, "years"));
+        console.log(`This person's bday is: ${inputDate}`);
         console.log(`This person's age is: ${age}`);
-        let m = moment(bday, "MMM-DD-YYYY");
+        let m = moment(inputDate, "MMM-DD-YYYY");
         //calling jsonGetter
         jsonGetter(m);
     });
