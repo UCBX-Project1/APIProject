@@ -42,15 +42,15 @@ $(document).ready(function () {
         emptyResults();
 
 
-        let inputDate = inputDate.val();
-        window.localStorage.setItem("birthday", inputDate);
+        let date = inputDate.val();
+        window.localStorage.setItem("birthday", date);
         inputDate.val("");
         userDateLabel.text("Enter Date");
         let now = moment();
-        let age = Math.abs(moment(inputDate, "MMM-DD-YYYY").diff(now, "years"));
+        let age = Math.abs(moment(date, "MMM-DD-YYYY").diff(now, "years"));
         console.log(`This person's bday is: ${inputDate}`);
         console.log(`This person's age is: ${age}`);
-        let m = moment(inputDate, "MMM-DD-YYYY");
+        let m = moment(date, "MMM-DD-YYYY");
         //calling jsonGetter
         jsonGetter(m);
     });
