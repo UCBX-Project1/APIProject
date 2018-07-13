@@ -1,3 +1,7 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 #jumbotron {
     margin-bottom: 25px;
 }
@@ -22,52 +26,51 @@
     overflow-y: scroll;
 }
 
-.datepicker-date-display {
-    background-color: blueviolet;
-}
-
-.material-icons.prefix.active,
-.insetlinktext.active {
-    color: blueviolet;
-}
-
+/* color for the number selected in the calendar so it doesnt belend in with the highlight circle */
 .is-selected button {
     color: white;
 }
 
-.dropdown-content li>a, .dropdown-content li>span {
-    color: blueviolet;
-}
+/* for the entryline highlight when selected*/
+.material-icons.prefix.active,
+.insetlinktext.active,
 
+/* for the dropdown elements in the date picker*/
+.dropdown-content li>a,
+.dropdown-content li>span,
+
+/* for the color of the date picker*/
 .datepicker-table td.is-today,
 .datepicker-cancel,
 .datepicker-clear,
 .datepicker-today,
 .datepicker-done {
-    color: blueviolet;
+    color: #6a1b9a;
 }
 
+/* background color of the date picker*/
+.datepicker-date-display, 
 .datepicker-table td.is-selected {
-    background-color: blueviolet;
+    background-color: #6a1b9a;
 }
 
 /* label focus color */
 
 .input-field input[type=text]:focus+label,
 .materialize-textarea:focus:not([readonly])+label {
-    color: blueviolet !important;
+    color: #6a1b9a !important;
 }
 
 /* label underline focus color */
 
 .input-field input[type=text]:focus,
 .materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid blueviolet !important;
-    box-shadow: 0 1px 0 0 blueviolet !important;
+    border-bottom: 1px solid #6a1b9a !important;
+    box-shadow: 0 1px 0 0 #6a1b9a !important;
 }
 
 .submitbutton {
     margin-bottom: 40px;
-    background-color: purple;
+    background-color: #6a1b9a;
 }
 
