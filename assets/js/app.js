@@ -12,6 +12,9 @@ $(document).ready(function () {
     var fileInput = $(".file-input");
     var userDateLabel = $(".user-date-label");
 
+    var result1Sec = $(".result1");
+    var result2Sec = $(".result2");
+
     //=====================================
     // Setting up the datepicker for b-days
     //=====================================
@@ -132,7 +135,7 @@ $(document).ready(function () {
             let docs = result.response.docs;
             // console.log(`Docs received from NYT: `);
             // console.log(docs);
-            for (let i = 0; i < RETURN_NUM && i < docs.length - 1; i ++) {
+            for (let i = 0; i < RETURN_NUM && i < docs.length; i ++) {
                 let currDoc = docs[i];
                 let currHeadLine = currDoc.headline.main;
                 let currUrl = currDoc.web_url;
@@ -150,7 +153,7 @@ $(document).ready(function () {
                 }).appendTo(ntyView);
 
                 //Push links to the new list, then to the empty div...
-                $("#result1").append(ntyView)
+                result1Sec.append(ntyView)
 
                 //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
 
@@ -220,7 +223,7 @@ $(document).ready(function () {
                     
                     console.log(currOmdbData)
                 
-                    for (let i = 0; i < RETURN_NUM; i ++) {
+                    for (let i = 0; i < RETURN_NUM && i < currOmdbData.length; i ++) {
                                             
                         let omdbTitle = result.Search[i].Title;
                         let omdbID = result.Search[i].imdbID;
@@ -236,7 +239,7 @@ $(document).ready(function () {
                         }).appendTo(omdbView);
                         console.log(omdbURL)
                         //Push links to the new list, then to the empty div...
-                        $("#result2").append(omdbView);
+                        result2Sec.append(omdbView);
         
                         //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
         
@@ -289,8 +292,8 @@ $(document).ready(function () {
 
     //Clears out previous results -- tied to our click handlers.
     function emptyResults(){
-        $("#result1").empty();
-        $("#result2").empty();
+        result1Sec.empty();
+        result2Sec.empty();
         $("#result3").empty();
     }
 
