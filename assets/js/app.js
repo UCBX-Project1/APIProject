@@ -12,6 +12,9 @@ $(document).ready(function () {
     var fileInput = $(".file-input");
     var userDateLabel = $(".user-date-label");
 
+    var result1Sec = $(".result1");
+    var result2Sec = $(".result2");
+
     //=====================================
     // Setting up the datepicker for b-days
     //=====================================
@@ -130,14 +133,14 @@ $(document).ready(function () {
         }).done(function (result) {
             // console.log(result);
             let docs = result.response.docs;
-            console.log(`Docs received from NYT: `);
-            console.log(docs);
-            for (let i = 0; i < RETURN_NUM; i ++) {
+            // console.log(`Docs received from NYT: `);
+            // console.log(docs);
+            for (let i = 0; i < RETURN_NUM && i < docs.length; i ++) {
                 let currDoc = docs[i];
                 let currHeadLine = currDoc.headline.main;
                 let currUrl = currDoc.web_url;
-                console.log((`${i} headline: ${currHeadLine}, url: ${currUrl}`));
-                console.log(currDoc)
+                // console.log((`${i} headline: ${currHeadLine}, url: ${currUrl}`));
+                // console.log(currDoc)
                 
                 //To add information to the display...
 
@@ -150,7 +153,7 @@ $(document).ready(function () {
                 }).appendTo(ntyView);
 
                 //Push links to the new list, then to the empty div...
-                $("#result1").append(ntyView)
+                result1Sec.append(ntyView)
 
                 //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
 
@@ -194,7 +197,7 @@ $(document).ready(function () {
             console.log(`Movie db response:`);
             console.log(response);
             let moviesList = response.results;
-            for (let i = 0; i < RETURN_NUM; i ++) {
+            for (let i = 0; i < RETURN_NUM && i < moviesList.length - 1; i ++) {
                 let currMovie = moviesList[i];
                 let currName = currMovie.title;
                 
@@ -208,26 +211,25 @@ $(document).ready(function () {
                         y : year
                     }
                 }).done(function (result) {
+                    console.log(`Movie: ${currName}| data:`);
+                    console.log(result);
+                    if (result.Response === "False") {
+                        console.log(`Movie does not exist`);
+                        return;
+                    }
                     console.log(result)
                     
                     let currOmdbData = result.Search
                     
                     console.log(currOmdbData)
                 
-
-                    for (let i = 0; i < RETURN_NUM; i ++) {
+                    for (let i = 0; i < RETURN_NUM && i < currOmdbData.length; i ++) {
                                             
-                        
-                    
                         let omdbTitle = result.Search[i].Title;
                         let omdbID = result.Search[i].imdbID;
 
                         console.log (omdbTitle);
                         console.log(omdbID);
-                       
-
-
-                        
                     
                         let omdbView = $("<ul>")
                         //Rather than having all information jammed into the cards, let's make the headlines links with the anchor tags...
@@ -237,7 +239,7 @@ $(document).ready(function () {
                         }).appendTo(omdbView);
                         console.log(omdbURL)
                         //Push links to the new list, then to the empty div...
-                        $("#result2").append(omdbView);
+                        result2Sec.append(omdbView);
         
                         //A little css to help with text going outside the container -- I know we shouldn't use css in jquery, can move later
         
@@ -246,14 +248,33 @@ $(document).ready(function () {
 
                     };
         
-        
-        
-        
                 }).fail(function (err) {
+                    console.log(`Error in finding movie`);
                     console.log(err);
                 });
             }
         
+        })
+    }
+
+    function wikiGetter(mObj) {
+        let year = mObj.get("year");
+        
+        // https://en.wikipedia.org/w/api.php?action=query&generator=search&format=json&exintro&exsentences=1&exlimit=max&gsrlimit=20&gsrsearch=hastemplate:Birth_date_and_age+Melanie_laurent&pithumbsize=100&pilimit=max&prop=pageimages%7Cextracts
+//https://en.wikipedia.org/w/api.php?action=query&generator=search&format=json&exintro&exsentences=1&exlimit=max&gsrlimit=20&gsrsearch=hastemplate:Birth_date+Melanie_laurent&pithumbsize=100&pilimit=max&prop=pageimages%7Cextracts
+        $.ajax({
+            url: 'http://en.wikipedia.org/w/api.php',
+            data: { 
+                action: 'query', 
+                list: 'search', 
+                srsearch: year, 
+                format: 'json'
+            },
+            dataType: 'jsonp',
+        }).done(function(response) {
+            console.log(`From wiki`);
+            console.log(response);
+            
         })
     }
 
@@ -266,12 +287,13 @@ $(document).ready(function () {
     function jsonGetter(mObj) {
         omdbGetter(mObj);
         nytGetter(mObj);
+        wikiGetter(mObj);
     }
 
     //Clears out previous results -- tied to our click handlers.
     function emptyResults(){
-        $("#result1").empty();
-        $("#result2").empty();
+        result1Sec.empty();
+        result2Sec.empty();
         $("#result3").empty();
     }
 
